@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/HackSavvy.png" type="image/x-icon">
+    <title>HackSavvy - WeLoaclize</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #1E1C1C;
+        }
+        h1 {
+            font-family: "Girassol";
+            margin: 10px;
+            color: red;
+            text-shadow: 2px 2px 8px white;
+            user-select: none;
+        }
+
+
+        .prediction-result {
+            height: 80vh;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .emotion-image {
+            width: 240px;
+            margin-left: 60px;
+        }
+        .emotion-image1 {
+            width: 240px;
+            margin-left: 60px;
+            border-radius: 125px;
+        }
+
+        .suggesstions {
+            color: white;
+            font-style: italic;
+            font-size: 30px;
+            text-align: center;
+        }
+        audio {
+            width: 77%;
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>WeLoaclize</h1>
+    </header>
+    <div class="prediction-result">
+        <p style="color: white; text-align: center; font-size: 30px;">The predicted emotion is: <strong>{{ prediction }}</strong></p>
+        
+        {% if prediction == 'neutral' %}
+        <img style="height: 240px;" src="{{ url_for('static', filename='neutral.jpg') }}" alt="Neutral" class="emotion-image1">
+        <p class="suggesstions">"""He/She is in neutral reaction, continue in same tone..."""</p>
+        {% elif prediction == 'calm' %}
+        <img src="{{ url_for('static', filename='clam.jpg') }}" alt="Calm" class="emotion-image1">
+        <p class="suggesstions">"""He/She is in calm mode, take a chance to make different vibes"""</p>
+        {% elif prediction == 'sad' %}
+        <img src="{{ url_for('static', filename='sad.jpg') }}" alt="Sad" class="emotion-image1">
+        <p class="suggesstions">"""He/She is in sad mode, try to be with them talking more and nicely for feel good vibes..."""</p>
+        {% elif prediction == 'happy' %}
+        <img src="{{ url_for('static', filename='happy.jpg') }}" alt="Happy"  class="emotion-image1">
+        <p class="suggesstions">"""He/she is in happy, continue in same tone for best conversation..."""</p>
+        {% elif prediction == 'angry' %}
+        <img src="{{ url_for('static', filename='Angry.webp') }}" alt="Angry" class="emotion-image">
+        <p class="suggesstions">"""He/she is in angry mode, talk to them nicely..."""</p>
+        {% elif prediction == 'fear' %}
+        <img src="{{ url_for('static', filename='fear.jpg') }}" alt="Fearful" class="emotion-image" style="border-radius: 120px;">
+        <p class="suggesstions">"""He/she is in fear mode. Make them calm, give a couples of seconds, and start talking in a supporting manner..."""</p>
+        {% elif prediction == 'disgust' %}
+        <img src="{{ url_for('static', filename='Disgust.jpg') }}" alt="Disgust" class="emotion-image1">
+        <p class="suggesstions">"""He/she is in disgust mood, give a time to let them speak, and then start your explanation"""</p> 
+        {% elif prediction == 'surprise' %}
+        <img src="{{ url_for('static', filename='surprise.jpg') }}" alt="Surprise" class="emotion-image1">
+        <p class="suggesstions">"""He/She is in suprise, be like the same one..."""</p>
+        {% endif %}
+        <audio controls>
+            <source src="{{ url_for('static', filename='temp_audio.wav') }}" type="audio/wav">
+
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+</body>
+
+</html>

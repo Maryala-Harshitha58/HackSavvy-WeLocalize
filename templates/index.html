@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/HackSavvy.png" type="image/x-icon">
+    <title>HackSavvy - WeLoaclize</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1E1C1C;
+        }
+
+        h1 {
+            font-family: "Girassol";
+            margin: 10px;
+            color: red;
+            text-shadow: 2px 2px 8px white;
+            user-select: none;
+        }
+
+        main>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        }
+
+        main div p {
+            color: white;
+            font-weight: 1000;
+            font-size: 38px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .form1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input::file-selector-button {
+            background-image: linear-gradient(to right,
+                    #ff7a18,
+                    #af002d,
+                    #319197 100%,
+                    #319197 200%);
+            background-position-x: 0%;
+            background-size: 200%;
+            border: 0;
+            border-radius: 8px;
+            color: #fff;
+            padding: 1rem 1.25rem;
+            text-shadow: 0 1px 1px #333;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        input[type="file" i] {
+            color: white;
+        }
+
+        input::file-selector-button:hover {
+            background-position-x: 100%;
+        }
+
+        .submit-button {
+            padding: 0.6em 2em;
+            border: none;
+            outline: none;
+            color: rgb(255, 255, 255);
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .submit-button:before {
+            content: "";
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing-button-85 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing-button-85 {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .submit-button:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>WeLoaclize</h1>
+    </header>
+    <main>
+        <div>
+            <p>Speech Emotion Recognition (SER) on<br>live calls</p>
+        </div>
+        <form class="form1" id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" id="audioFile" name="audioFile" accept="audio/*" required>
+            <button class="submit-button" type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>
